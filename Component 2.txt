@@ -1,0 +1,77 @@
+Component 2
+
+data.js
+
+courses --|
+	  |-id
+	  |-name
+ 	  |-brief
+ 	  |-description
+ 	  |-hours
+ 	  |-modules
+ 	  |-picture
+
+Small modification on data.js 
+hours data type to integer
+instead of import images on first three lines, use assign it as a const variable of imgs
+
+Project Initialisation:
+Initialise a new Node.js project.
+Step 1: Initialize a new Node.js project
+
+Step 2: Install the required packages <npm install express>
+
+Step 3: Create the app.js by assigning the data.js file which was created in Component 1 as sample data for API endpoints exercises.
+
+Step 4: Enable ES6 module support
+
+Set up an Express servers.
+Step 1: Install express-validator <npm install body-parser express-validator>
+
+Step 2: Modify the file to include the new endpoint and validations
+
+Setup and connect to a MongoDB database.
+{input}
+
+Data Models:
+Design a data model for courses with fields: title, description, 
+instructor, duration, and category.
+
+Schema
+{
+	"title": "string",
+  "description": "string", 
+  "instructor": "string", 
+  "duration": "integer",
+  "category": "string"
+  
+}
+
+
+Insert the following command to insert data into MongoDB Database
+db.courses.insertOne({
+	name: 'Introduction to Data Analytics',
+	description: 'This course introduces the core concepts of data analytics, including data collection, cleaning, visualization, and interpretation. Students will explore tools and techniques used by modern analysts to uncover trends and insights from data. Through practical exercises and real-world examples, learners will build a strong foundation in working with data, creating visual dashboards, and communicating insights effectively.',
+	instructor: "Nova Kade",
+	duration: 70,
+	category: "IT"
+})
+
+
+db.courses.insertOne({
+	name: 'Digital Marketing Fundamentals',
+	description: 'Digital marketing is essential for businesses in today\'s online world. In this course, students will learn the key channels used to reach and engage audiences digitally. Topics include search engine optimization (SEO), social media marketing, paid advertising, email campaigns, and content strategy. By the end of the course, learners will understand how to design and evaluate a digital marketing campaign using analytics and performance metrics.',
+	instructor: "Thalorin Vey",
+	duration: 60,
+	category: "IT"
+})
+
+db.courses.insertOne({
+	name: 'Project Management Essentials',
+	description: 'This course covers the fundamental principles and tools used in project management. Learners will explore project planning, scheduling, budgeting, risk management, and stakeholder communication. Through structured frameworks and case studies, participants will learn how to manage resources, track project progress, and deliver results on time and within scope.',
+	instructor: "Nyssa Vael",
+	duration: 60,
+	category: "Business"
+})
+
+

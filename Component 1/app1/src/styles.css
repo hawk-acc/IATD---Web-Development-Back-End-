@@ -1,0 +1,124 @@
+/* src/styles.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 70px; /* Adjust padding to account for the fixed nav */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.product {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.product h2 {
+  margin-top: 0;
+}
+
+.product .price {
+  font-weight: bold;
+  color: green;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: green;
+  color: rgb(4, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.App {
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: blue;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.app-buttons .btn {
+  width: 170px;
+  margin: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: #2b78e4;
+  color: white;
+  justify-content: center
+}
+
+.app-button-hover-effect:hover {
+  background-color: #2962ff;
+  color: white;
+  cursor: pointer;
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-flex-container {
+  display: flex;
+  justify-content: center;
+}
