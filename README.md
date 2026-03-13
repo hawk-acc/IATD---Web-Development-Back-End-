@@ -40,3 +40,27 @@ Run the application in the terminal / command prompt by:
 You should be able to see the web app appeared like the following:
 
 ![Screenshot1](https://github.com/hawk-acc/IATD---Web-Development-Back-End-/blob/main/Screenshot%201.png)
+
+You can interact with the course listing page by clicking on the more information. It will lead you to a page which provide full detail of the selected course.
+
+## Component 2
+
+### Implementing back-end development (Node.js & Express)
+
+* Project initialisation:
+  * Initialse a new Node.js project.
+  * Set up an Express server.
+  * Setup and connect to a MongoDB database.
+
+* Data Models:
+  * Design a data model for courses with fields: title, description, instructor, duration, and category.
+ 
+* API Endpoints:
+  * GET /courses: Retrieve a list all courses.
+  * GET /courses/:id: Retrieve detailed information about a specific course.
+  * POST /courses: Add a new course.
+ 
+Change the directory to app1 by:
+
+`cd Component2/courses-api`
+
