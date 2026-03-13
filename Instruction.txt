@@ -1,0 +1,79 @@
+The project consists of following 4 components:
+
+"Create one video for component 1, 2 & 3"
+
+Component 1: Front-end Development (React) - Submit code files
+
+Component 2: Back-end Development (Node.js & Express) - Submit code files
+
+Component 3: Client-Side Integration - Submit code files
+
+Component 4: Advanced Functionality - Submit Project Reflection Document
+
+Component 1
+Submit Home Page & Detailed Page:                          Submit Code Files
+
+Create a home page that displays a list of courses with:
+-An image representing the course.
+-The course title.
+-A brief description.
+-Hours to complete.
+-A button or link to view more details about the course.
+Create a detailed view page for each course with:
+-The course title.
+-An image representing the course.
+-A detailed description.
+-A list of modules or lessons included in the course.
+-An enrollment button.
+Guidelines:
+Use Create React App to set up a new React project.
+Ensure the page is fully responsive, with a mobile-first design approach.
+Utilize Flexbox or CSS Grid for layout. "https://www.w3schools.com/css/css_grid.asp"
+Use React components to make it reusable.
+Setup routing via app.js.
+
+Component 2
+Back-end Development (Node.js & Express)            Submit Code Files
+
+Project Initialisation:
+Initialise a new Node.js project.
+Set up an Express server.
+Setup and connect to a MongoDB database.
+Data Models:
+Design a data model for courses with fields: title, description, instructor, duration, and category.
+API Endpoints:
+GET /courses: Retrieve a list of all courses.
+GET /courses/:id: Retrieve detailed information about a specific course.
+POST /courses: Add a new course.
+
+Component 3
+Client-Side Integration:                                             Submit Code Files
+
+React Application:
+Set up a React application to interact with your backend.
+Implement a course listing page where users can see all courses.
+Implement a course detail page where users can view more information about a specific course.
+
+Component 4
+Caching:
+Report on how would you implement caching strategies to handle a large number of courses efficiently.
+I would implement the in-memory caching that use either Redis or Memcached to cache frequently accessed data and reduce the load on database. Also, HTTP caching can be a great idea to enable client-side caching and reduce server load.
+As well as CDN (Content Dynamic Network) can be used to allow the users to access the closest server in their geographical region.
+
+Plan for cache invalidation
+To implement cache invalidation strategies, we need to ensure that cached data remains up to date. This can be achieved by setting conditions to remove cached items after a certain period of time or by using event-driven invalidation when data changes.
+
+
+Load Balancing:
+Report on how would you distribute incoming requests across multiple instances of your Express server.
+I would use horizontal scaling, i.e. load balancers (e.g. NGINX, HAProxy) to distribute incoming requests across multiple instances of my Express server. 
+
+High Availability:
+Report on how would you ensure high availability for your backend application, especially in disaster scenarios.
+
+In general, we provide redundancy to ensure high availability of backend application. 
+For instances, a load balancer distributes incoming traffic across multiple application servers to prevent any single server from becoming overloaded.
+
+Report on how would you implement high availability for the MongoDB database in a production environment. 
+
+
