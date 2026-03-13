@@ -37,6 +37,6 @@ Run the application in the terminal / command prompt by:
 
 `npm run dev`
 
-You see the web app appear like the following:
+You should be able to see the web app appeared like the following:
 
-
+![Screenshot1](https://github.com/hawk-acc/IATD---Web-Development-Back-End-/blob/main/Screenshot%201.png)
