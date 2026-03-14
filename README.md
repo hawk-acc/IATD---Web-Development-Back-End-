@@ -37,6 +37,10 @@ Run the application in the terminal / command prompt by:
 
 `npm run dev`
 
+Insert the following URL to view the app
+
+`http://localhost:5173/`
+
 You should be able to see the web app appeared like the following:
 
 ![Screenshot1](https://github.com/hawk-acc/IATD---Web-Development-Back-End-/blob/main/Screenshot%201.png)
@@ -62,7 +66,7 @@ The following tasks require the student to implement back-end mechanism that inv
   * GET /courses/:id: Retrieve detailed information about a specific course.
   * POST /courses: Add a new course.
  
-Change the directory to app1 by:
+Change the directory to courses-api by:
 
 `cd Component2/courses-api`
 
@@ -99,6 +103,7 @@ Hence, we can insert the data in the following ways into mongodb:
 	duration: 70,
 	category: "IT"
 })`
+
 `db.courses.insertOne({
 	title: 'Digital Marketing Fundamentals',
 	description: 'Digital marketing is essential for businesses in today\'s online world. In this course, students will learn the key channels used to reach and engage audiences digitally. Topics include search engine optimization (SEO), social media marketing, paid advertising, email campaigns, and content strategy. By the end of the course, learners will understand how to design and evaluate a digital marketing campaign using analytics and performance metrics.',
@@ -150,3 +155,61 @@ We can select raw body in JSON format and add the appropriate structured data th
 Once it is successfully created, we can see HTTP response status code will show 201. 
 
 ![Screenshot4](https://github.com/hawk-acc/IATD---Web-Development-Back-End-/blob/main/Screenshot%204.png)
+
+Also, ensuring that the post is successfully achieved, we can always do GET /courses to see if a new post is created in the database.
+
+## Component 3
+
+### Implementing Client-side Integration
+
+* React Application:
+  * Set up a React application to interact with your backend.
+  * Implement a course listing page where users can see all courses.
+  * Implement a course detail page where users can view more information about a specific course.
+
+ In this exercise, we will integrate both back-end and front-end together for user to interact with the web application while connecting to database.
+
+ The idea is fairly straight forwards. 
+
+ As the user gets on the web app, they should be able to view the available courses display on the main listing page. 
+
+ Once more information button is clicked to view the particular course of interest, the API request will send to the database and expect for a response to be provided.
+
+ After that, the user could see the full course detail in the following page which is the response coming back from database query.
+
+ Change the directory to back-end by:
+
+`cd Component3/app3/Back-End`
+
+To run the back-end, we could simply run the following CLI.
+
+`npm start`
+
+Change the directory to front-end by:
+
+`cd Component3/app3/Front-End`
+
+To run the front-end, we could simply run the following CLI.
+
+`npm run dev`
+
+Insert the following URL to view the app
+
+`http://localhost:5173/`
+
+The look of this web application looks very similar to the exercise of component 1.
+
+Additionaly, I have added an attribute of slug which displays the name of course in dashed between words rather than space. 
+
+If user would like to fast track the particular content of certain, they don't have to go through the listing page of courses. 
+
+Let's take the course title Digital Marketing Fundamentals as an example. 
+
+## Component 4
+
+
+
+They could simply something like `http://localhost:5173/course/Digital-Marketing-Fundamentals` to view the course page straight away.
+
+
+
