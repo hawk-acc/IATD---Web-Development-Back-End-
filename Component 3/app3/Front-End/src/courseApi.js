@@ -14,9 +14,9 @@ export async function fetchCourses(){
 }
 
 //function to fetch courses
-export async function fetchCourseBySlug(slug) {
+export async function fetchCourseById(id) {
   try {
-    const response = await axios.get(`${BASE_URL}/courses/${slug}`);
+    const response = await axios.get(`${BASE_URL}/courses/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching course:", error);

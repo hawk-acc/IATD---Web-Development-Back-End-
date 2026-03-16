@@ -12,16 +12,6 @@ const uri = 'mongodb+srv://Hawk:123@hawkcluster.7y84t3h.mongodb.net/?appName=Haw
 const client = new MongoClient(uri);
 //app.use('/images', express.static('images'));
 
-let db;
-
-// Connect ONCE when the server starts without race conditions
-async function connectDB() {
-  await client.connect();
-  console.log("Connected to MongoDB");
-  db = client.db("fullCourseApp");
-}
-
-connectDB();
 
 
 //Middleware to parse JSON bodies
@@ -33,7 +23,7 @@ app.use(cors());
 app.get('/courses', async(req, res)=> {
     let courses = [];
     try {
-        //Connect to the MongoDB cluster
+         //Connect to the MongoDB cluster
         await client.connect();
 
         //Confirm connection
@@ -59,8 +49,8 @@ app.get('/courses', async(req, res)=> {
 });
 
 // Get information for a specific course
-app.get('/courses/:slug', async (req, res) => {
-  const { slug } = req.params;
+app.get('/courses/:id', async (req, res) => {
+  const { id } = req.params;
 
   try {
     await client.connect();
@@ -70,7 +60,7 @@ app.get('/courses/:slug', async (req, res) => {
     const collection = database.collection('courses');
 
     // Find ONE course by title
-    const course = await collection.findOne({ slug: slug });
+    const course = await collection.findOne({ _id: Number(id)});
 
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });

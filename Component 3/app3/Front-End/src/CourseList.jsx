@@ -16,7 +16,7 @@ const CourseList = () => {
   }, []);
 
   const handleButtonClick = (identifier) => {
-    navigate(`/course/${identifier}`);
+    navigate(`/courses/${identifier}`);
   };
   
   return (
@@ -24,13 +24,13 @@ const CourseList = () => {
       <h1>Available Courses</h1>
       <ul>
         {courses.map(course => (
-          <li key={course.slug}>
+          <li key={course._id}>
             <img src={`http://localhost:3000${course.picture}`} alt={course.name} width="500" height="333"></img>
             <p>{course.name}</p>
             <p>{course.brief}</p>
             <p>{course.hours}</p>
             <p>
-              <button className="app-button-hover-effect" onClick={()=>handleButtonClick(course.slug)}>
+              <button className="app-button-hover-effect" onClick={()=>handleButtonClick(course._id)}>
                 More Information
               </button>
             </p>

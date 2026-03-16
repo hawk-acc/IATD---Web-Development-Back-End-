@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { fetchCourseBySlug } from './courseApi';
+import { fetchCourseById } from './courseApi';
 import React, {useEffect, useState } from 'react';
 import './styles.css';
 //import courses from './data';
@@ -7,19 +7,19 @@ import './styles.css';
 
 function CoursePage() {
   //const location = useLocation();
-  const { slug } = useParams();
+  const { _id } = useParams();
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
 
   useEffect(() => {
     async function fetchACourse(){
-      const data = await fetchCourseBySlug(slug);
+      const data = await fetchCourseById(_id);
       setCourse(data);
     }
     fetchACourse();
-  },[slug]);
+  },[_id]);
 
-  if (!course) return <p>{slug} is not found in the server.</p>
+  if (!course) return <p>{_id} is not found in the server.</p>
   //const buttonIdentifier = Number(new URLSearchParams(location.search).get('button'));
   //const selectedCourse = courses.find(course => course.slug === buttonIdentifier);
 
