@@ -18,7 +18,7 @@ The following tasks require the student to implement a react front-end to:
   * An image representing the course.
   * A detailed description.
   * A list of modules or lessons included in the course.
-  * An enrollemtn button
+  * An enrolment button
 
 To clone this repository, you can copy the following CLI:
 
