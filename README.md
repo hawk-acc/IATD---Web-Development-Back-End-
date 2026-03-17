@@ -199,17 +199,11 @@ Insert the following URL to view the app
 
 The look of this web application looks very similar to the exercise of component 1.
 
-Additionaly, I have added an attribute of slug which displays the name of course in dashed between words rather than space. 
-
-If user would like to fast track the particular content of certain, they don't have to go through the listing page of courses. 
-
-Let's take the course title Digital Marketing Fundamentals as an example. 
+However, it came with the additional features of interacting with backend-component rather than retrieve with certain data file. 
 
 ## Component 4
 
 
-
-They could simply something like `http://localhost:5173/course/Digital-Marketing-Fundamentals` to view the course page straight away.
 
 
 
