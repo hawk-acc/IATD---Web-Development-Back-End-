@@ -50,6 +50,7 @@ Schema
 
 Insert the following command to insert data into MongoDB Database
 db.courses.insertOne({
+	_id: 1,
 	title: 'Introduction to Data Analytics',
 	description: 'This course introduces the core concepts of data analytics, including data collection, cleaning, visualization, and interpretation. Students will explore tools and techniques used by modern analysts to uncover trends and insights from data. Through practical exercises and real-world examples, learners will build a strong foundation in working with data, creating visual dashboards, and communicating insights effectively.',
 	instructor: "Nova Kade",
@@ -59,6 +60,7 @@ db.courses.insertOne({
 
 
 db.courses.insertOne({
+	_id: 2,
 	title: 'Digital Marketing Fundamentals',
 	description: 'Digital marketing is essential for businesses in today\'s online world. In this course, students will learn the key channels used to reach and engage audiences digitally. Topics include search engine optimization (SEO), social media marketing, paid advertising, email campaigns, and content strategy. By the end of the course, learners will understand how to design and evaluate a digital marketing campaign using analytics and performance metrics.',
 	instructor: "Thalorin Vey",
@@ -67,6 +69,7 @@ db.courses.insertOne({
 })
 
 db.courses.insertOne({
+	_id: 3,
 	title: 'Project Management Essentials',
 	description: 'This course covers the fundamental principles and tools used in project management. Learners will explore project planning, scheduling, budgeting, risk management, and stakeholder communication. Through structured frameworks and case studies, participants will learn how to manage resources, track project progress, and deliver results on time and within scope.',
 	instructor: "Nyssa Vael",

@@ -58,8 +58,8 @@ app.get('/courses', async(req, res)=> {
 });
 
 // Get information for a specific course
-app.get('/courses/:title', async (req, res) => {
-  const { title } = req.params;
+app.get('/courses/:id', async (req, res) => {
+  const { id } = req.params;
 
   try {
     await client.connect();
@@ -69,7 +69,7 @@ app.get('/courses/:title', async (req, res) => {
     const collection = database.collection('courses');
 
     // Find ONE course by title
-    const course = await collection.findOne({ title: title });
+    const course = await collection.findOne({ _id: Number(id)});
 
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
@@ -100,15 +100,7 @@ app.post('/courses',
         if(!errors.isEmpty()){
             return res.status(400).json({errors:errors.array()});
         }
-        const { title, description, instructor, duration, category} = req.body;
-        const newCourse = {
-            //id: courses.length+1,
-            title,
-            description,
-            instructor,
-            duration,
-            category
-        };
+
 
         // courses.push(newCourse);
         // 
@@ -123,6 +115,17 @@ app.post('/courses',
             const database = client.db('courseApp');
             const collection = database.collection('courses');
 
+            const total = await collection.countDocuments();
+
+            const { title, description, instructor, duration, category} = req.body;
+            const newCourse = {
+                _id: total+1,
+                title,
+                description,
+                instructor,
+                duration,
+                category
+            };
             //Example operation (insert a document)
             const result = await collection.insertOne(newCourse);
             console.log('Document inserted with _id: ', result.insertedId);

@@ -11,7 +11,7 @@ const CourseList = () => {
   };
   return (
     <div>
-      <h1>Courses Available</h1>
+      <h1>Available Courses</h1>
       <ul>
         {courses.map(course => (
           <li key={course.id}>
