@@ -210,16 +210,21 @@ However, it came with the additional features of interacting with backend-compon
 
 ### Caching:
 #### Report on how would you implement caching strategies to handle a large number of courses efficiently.
-I would implement the in-memory caching that use either Redis or Memcached to cache frequently accessed data and reduce the load on database. Also, HTTP caching can be a great idea to enable client-side caching and reduce server load.
-As well as CDN (Content Dynamic Network) can be used to allow the users to access the closest server in their geographical region.
+Let's imagine if we have big data containing a large number of courses in our app. Handling the high frequency of users' responses can be quite challenging. It could potentially slow down the server or make it crash.
+We can implement HTTP caching that enables client-side caching and reduce server load.
+CDN (Content Dynamic Network) can be used to allow the users to access the closest server in their geographical region if more than one servers are implemented.
 
 #### Plan for cache invalidation
-To implement cache invalidation strategies, we need to ensure that cached data remains up to date. This can be achieved by setting conditions to remove cached items after a certain period of time or by using event-driven invalidation when data changes.
+In many cases, the cached data could not outdated due to the updated data occurred in the web application. In our example, the microcourses app might have some changes in the courses content due to renwer of learning outcome and description. The user might still have the out-of-date cached data stored in their computer. To achieve this cache invalidation strategies, we set the conditions to remove cached items after a certain period of time or by using event-driven invalidation when data changes, i.e. course update or course deletion.
 
 
 ### Load Balancing:
 #### Report on how would you distribute incoming requests across multiple instances of your Express server.
-I would use the splitting strategy also known as horizontal scaling, i.e. load balancers (e.g. NGINX, HAProxy) to distribute incoming requests across multiple instances of my Express server. 
+As the web application grows, it would be thoughtful to have good strategies for handling the incoming requests across multiple instances of my Express server. 
+* Use a load balancer to distribute requests
+	* Spread traffic evenly - prevent users' requests overloading
+ 	* Detect unhealthy instances - to avoid them from being used
+    * Improve reliability - Redundancy (the app stays online) & Automatic Failover (if the servers failed, it instantly reroutes to the healthy servers. Users never notice the failure.)
 
 ### High Availability:
 #### Report on how would you ensure high availability for your backend application, especially in disaster scenarios.
