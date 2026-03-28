@@ -23,7 +23,7 @@ Our package.json should look like the following:
 {
   "name": "courses-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node app.js",
@@ -229,90 +229,114 @@ db.courses.insertMany([
   }
 ])
 ```
+Alternatively, we can import a JSON file directly to the database.
+
+```
+[{
+  "_id": 1,
+  "instructor": "Nova Kade",
+  "category": "IT",
+  "title": "Introduction to Data Analytics",
+  "description": "This course introduces the core concepts of data analytics, including data collection, cleaning, visualization, and interpretation. Students will explore tools and techniques used by modern analysts to uncover trends and insights from data. Through practical exercises and real-world examples, learners will build a strong foundation in working with data, creating visual dashboards, and communicating insights effectively.",
+  "duration": 70
+},
+{
+  "_id": 2,
+  "instructor": "Thalorin Vey",
+  "category": "IT",
+  "title": "Digital Marketing Fundamentals",
+  "description": "Digital marketing is essential for businesses in today's online world. In this course, students will learn the key channels used to reach and engage audiences digitally. Topics include search engine optimization (SEO), social media marketing, paid advertising, email campaigns, and content strategy. By the end of the course, learners will understand how to design and evaluate a digital marketing campaign using analytics and performance metrics.",
+  "duration": 60
+},
+
+{
+  "_id": 3,
+  "instructor": "Nyssa Vael",
+  "category": "Business",
+  "title": "Project Management Essentials",
+  "description": "This course covers the fundamental principles and tools used in project management. Learners will explore project planning, scheduling, budgeting, risk management, and stakeholder communication. Through structured frameworks and case studies, participants will learn how to manage resources, track project progress, and deliver results on time and within scope.",
+  "duration": 60
+}]
+```
 
 Just before we do anything in the server file. We need to make sure we install mongodb in our node js package.
 
-`npm install mongodb`
+`npm install mongoose`
 
-To set up mongodb connection, we need to include the following lines in our server js file.
+To set up mongodb connection, we need to create a .env file containing the URi to be able to connect to the target database.
 
 ```
-import { MongoClient } from 'mongodb';
-const uri = 'mongodb+srv://Hawk:123@hawkcluster.7y84t3h.mongodb.net/?appName=HawkCluster'; //for my example
-const client = new MongoClient(uri);
+MONGODB_URI=mongodb+srv://Hawk:123@hawkcluster.7y84t3h.mongodb.net/courseApp
+PORT=3000
 ```
-
+#### server.js summary
 In our backend, we use express as web framework for creating API routes, handling requests and responses, adding middleware such as validation, authetication, etc as well as connecting to database.
 
 ```
 const app = express();
-const PORT = 3000;
-app.use(bodyParser.json()); //Middleware to parse JSON bodies
-app.use(cors()); //Allow cross-origin requests that lets frontend call your express backend
+app.use(cors());
+const port = process.env.PORT || 3000;
 ```
 
-We need to extra code to our API GET & POST by providing checks to see if the requests are valid to be responsed or otherwise return the error.
+We also need to check if our backend could successfully connect to the MONGODB.
+```
+// MongoDB connection
+connect(process.env.MONGODB_URI);
+
+const db = connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+    console.log('Connected to MongoDB');
+});
+```
+
+The code below define mongoose schema and model.
+
+```
+const courseSchema = new Schema({
+    _id: Number,
+    title: String,
+    description: String,
+    instructor: String,
+    duration: Number,
+    category: String  
+});
+```
+
+The codes below are the GET and POST APIs. 
+Additionally, we need to add extra code to our APIs by providing checks to see if the requests are valid to be responsed or otherwise return the error.
 
 * GET /courses: Retrieve a list of all courses.
 
 ```
-app.get('/courses', async(req, res)=> {
-    let courses = [];
-    try {
-        //Connect to the MongoDB cluster
-        await client.connect();
-
-        //Confirm connection
-        console.log('Connected to MongoDB');
-
-        //Specify database and collection
-        const database = client.db('courseApp');
-        const collection = database.collection('courses');
-
-        //Fetch all courses
-        courses = await collection.find({}).toArray();
-
-        //Log the list of courses
-        console.log('List of Courses:', courses);
-        res.json(courses);
-    } catch (error) {
-        console.error('Error connecting to MongoDB', error);
-    } finally {
-        //Close the connection
-        await client.close();
-    }
-    
+// Retrieve all students
+app.get('/courses', (req, res) => {
+    Course.find({})
+        .then(courses => {
+            res.json(courses);
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).send('Error retrieving courses');
+        });
 });
 ```
 The code above is asking for a return of a list of courses. If the connection is failed, it will return an error mesaage. 
 
 * GET /courses/:Id: Retrieve detailed information about a specific course.
 ```
-app.get('/courses/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
-
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-
-    const database = client.db('courseApp');
-    const collection = database.collection('courses');
-
-    // Find ONE course by title
-    const course = await collection.findOne({ _id: Number(id)});
-
-    if (!course) {
-      return res.status(404).json({ message: 'Course not found' });
-    }
-
-    res.json(course);
-
-  } catch (error) {
-    console.error('Error fetching course', error);
-    res.status(500).json({ message: 'Server error' });
-  } finally {
-    await client.close();
-  }
+app.get('/courses/:id', (req, res) => {
+    Course.findById(req.params.id)
+        .then(course => {
+            if (!course) {
+                return res.status(404).send('Course not found');
+            }
+            res.json(course);
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).send('Error retrieving course');
+        });
 });
 ```
 The code above is asking for a return of a specific course from a list of courses based on ID. If the course is not found, it will return an 404 error with message of 'Course not found'. Likewise, if the connection is failed, it will return an error mesaage. 
@@ -320,60 +344,20 @@ The code above is asking for a return of a specific course from a list of course
 * POST /courses: Add a new course.
 
 ```
-//Create a new course with validation
-app.post('/courses',
-    //Validation middleware
-    [
-       body('title').isString().withMessage('Title must be a string'),
-       body('description').isString().withMessage('Description must be a string'),
-       body('instructor').isString().withMessage('Instructor must be a string'),
-       body('duration').isInt({ gt: 0 }).withMessage('Duration must be a positive number'),
-       body('category').isString().withMessage('Category must be a string')
-    ],
-    async (req, res) => {
-        const errors = validationResult(req);
-        if(!errors.isEmpty()){
-            return res.status(400).json({errors:errors.array()});
-        }
-
-
-        // courses.push(newCourse);
-        // 
-        try {
-            //connect to the MongoDB cluster
-            await client.connect();
-
-            //Confirm connection
-            console.log('Connected to MongoDB');
-
-            //Specify database and collection
-            const database = client.db('courseApp');
-            const collection = database.collection('courses');
-
-            const total = await collection.countDocuments();
-
-            const { title, description, instructor, duration, category} = req.body;
-            const newCourse = {
-                _id: total+1,
-                title,
-                description,
-                instructor,
-                duration,
-                category
-            };
-            //Example operation (insert a document)
-            const result = await collection.insertOne(newCourse);
-            console.log('Document inserted with _id: ', result.insertedId);
-
-            res.status(201).json(newCourse);
-        } catch (error){
-            console.error('Error connecting to MongoDB', error);
-        }finally{
-            //Close the connection
-            await client.close();
-        }
+app.post('/courses', async (req, res) => {
+    const total = await Course.countDocuments();
+    const newCourse = new Course({
+        _id: total+1,
+        ...req.body,
+    });
+    try {
+        await newCourse.save();
+        console.log('Course created:', newCourse);
+        res.status(201).send(newCourse);
+    } catch (error) {
+        res.status(400).send(error);
     }
-);
+});
 ```
 The code above is used for the purpose of uploading a new dataset to MongoDB. It validates the attributes of new data in correct type before inserting it as a newCourse. Each time a course is uploaded, it will automatically insert a new id incrementing from the total of courses. If it is successfully inserted into database, it will return a status of 201. Likewise, if the connection is failed, it will return an error mesaage. 
 
