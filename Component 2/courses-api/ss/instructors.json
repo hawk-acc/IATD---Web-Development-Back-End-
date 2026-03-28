@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "69c51da275b05f14c25899a9"
+  },
+  "name": "Nova Kade",
+  "email": "n.kade@outlook.com"
+},
+{
+  "_id": {
+    "$oid": "69c51db175b05f14c25899aa"
+  },
+  "name": "Thalorin Vey",
+  "email": "t.vey@outlook.com"
+},
+{
+  "_id": {
+    "$oid": "69c51dc175b05f14c25899ab"
+  },
+  "name": "Nyssa Vael",
+  "email": "n.vael@outlook.com"
+},
+{
+  "_id": {
+    "$oid": "69c51dce75b05f14c25899ac"
+  },
+  "name": "Peter Shadan",
+  "email": "p.shadan@outlook.com"
+}]
+

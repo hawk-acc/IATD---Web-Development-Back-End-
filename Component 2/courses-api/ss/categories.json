@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "69c51c3875b05f14c25899a5"
+  },
+  "name": "IT",
+  "description": "Courses are related to computer skills"
+},
+{
+  "_id": {
+    "$oid": "69c520f675b05f14c25899ad"
+  },
+  "name": "Business",
+  "description": "Any commercial or mercantile activities related."
+},
+{
+  "_id": {
+    "$oid": "69c5210b75b05f14c25899ae"
+  },
+  "name": "Language",
+  "description": "a system of communication related."
+}]

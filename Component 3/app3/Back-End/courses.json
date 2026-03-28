@@ -1,0 +1,60 @@
+[
+{
+  "_id": 1,
+  "name": "Introduction to Data Analytics",
+  "brief": "Learn the fundamentals of data analytics and how to transform raw data into meaningful insights for better decision-making.",
+  "description": "This course introduces the core concepts of data analytics, including data collection, cleaning, visualization, and interpretation. Students will explore tools and techniques used by modern analysts to uncover trends and insights from data. Through practical exercises and real-world examples, learners will build a strong foundation in working with data, creating visual dashboards, and communicating insights effectively.",
+  "instructor": "Nova Kade",
+  "duration": 70,
+  "category": "IT",
+  "modules": [
+    "Introduction to Data Analytics",
+    "Understanding Data Types and Sources",
+    "Data Cleaning and Preparation",
+    "Exploratory Data Analysis",
+    "Data Visualization Fundamentals",
+    "Introduction to Analytical Tools (Excel, Python, or BI Tools)",
+    "Communicating Insights with Data"
+  ],
+  "picture": "/images/1.jpg"
+},
+{
+  "_id": 2,
+  "name": "Digital Marketing Fundamentals",
+  "brief": "Understand the core strategies of digital marketing including SEO, social media, content marketing, and online advertising.",
+  "description": "Digital marketing is essential for businesses in today’s online world. In this course, students will learn the key channels used to reach and engage audiences digitally. Topics include search engine optimization (SEO), social media marketing, paid advertising, email campaigns, and content strategy. By the end of the course, learners will understand how to design and evaluate a digital marketing campaign using analytics and performance metrics.",
+  "instructor": "Thalorin Vey",
+  "duration": 60,
+  "category": "IT",
+  "modules": [
+    "Introduction to Digital Marketing",
+    "Understanding Online Customer Behavior",
+    "Search Engine Optimization (SEO) Basics",
+    "Social Media Marketing",
+    "Content Marketing Strategies",
+    "Email Marketing Campaigns",
+    "Paid Advertising (PPC & Display Ads)",
+    "Marketing Analytics and Performance Tracking"
+  ],
+  "picture": "/images/2.jpg"
+},
+{
+  "_id": 3,
+  "name": "Project Management Essentials",
+  "brief": "Develop practical project management skills to plan, execute, and deliver projects successfully.",
+  "description": "This course covers the fundamental principles and tools used in project management. Learners will explore project planning, scheduling, budgeting, risk management, and stakeholder communication. Through structured frameworks and case studies, participants will learn how to manage resources, track project progress, and deliver results on time and within scope.",
+  "instructor": "Nyssa Vael",
+  "duration": 60,
+  "category": "Business",
+  "modules": [
+    "Introduction to Project Management",
+    "Project Lifecycle and Methodologies",
+    "Project Planning and Scope Definition",
+    "Scheduling and Resource Management",
+    "Risk Identification and Mitigation",
+    "Team Communication and Collaboration",
+    "Monitoring Progress and Reporting",
+    "Project Closure and Evaluation"
+  ],
+  "picture": "/images/3.jpg"
+}]
